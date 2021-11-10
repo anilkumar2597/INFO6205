@@ -18,7 +18,9 @@ public class Main {
 
     public static void main(String[] args) {
         processArgs(args);
-        System.out.println("Degree of parallelism: " + ForkJoinPool.getCommonPoolParallelism());
+        //System.out.println("Degree of parallelism: " + ForkJoinPool.getCommonPoolParallelism());
+        ParSort.Pool = new ForkJoinPool(2048);
+        System.out.println("Degree of parallelism: " + ParSort.Pool.getParallelism());
         Random random = new Random();
         int[] array = new int[2000000];
         ArrayList<Long> timeList = new ArrayList<>();
@@ -72,10 +74,10 @@ public class Main {
 
     private static void processCommand(String x, String y) {
         if (x.equalsIgnoreCase("N")) setConfig(x, Integer.parseInt(y));
-        else
+        /*else
             // TODO sort this out
             if (x.equalsIgnoreCase("P")) //noinspection ResultOfMethodCallIgnored
-                ForkJoinPool.getCommonPoolParallelism();
+                ForkJoinPool.getCommonPoolParallelism();*/
     }
 
     private static void setConfig(String x, int i) {
